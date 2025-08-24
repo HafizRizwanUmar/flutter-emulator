@@ -1,0 +1,146 @@
+{
+  "name": "flutter-web-emulator",
+  "displayName": "Flutter Web Emulator",
+  "description": "Effortlessly run and test Flutter web apps in a customizable, phone-like emulator within VS Code, featuring hot reload, device rotation, and preset configurations for seamless mobile development.",
+  "version": "1.0.4",
+  "publisher": "hafizrizwanumar",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "flutter",
+    "dart",
+    "web",
+    "emulator",
+    "mobile"
+  ],
+  "icon": "media/logo.png",
+  "galleryBanner": {
+    "color": "#0175C2",
+    "theme": "dark"
+  },
+  "homepage": "https://flutter-web-emulator.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HafizRizwanUmar/flutter-emulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HafizRizwanUmar/flutter-emulator/issues"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "flutterWebEmulator.start",
+        "title": "Flutter Web Emulator: Start",
+        "icon": "$(play)"
+      },
+      {
+        "command": "flutterWebEmulator.reload",
+        "title": "Flutter Web Emulator: Reload"
+      },
+      {
+        "command": "flutterWebEmulator.rotate",
+        "title": "Flutter Web Emulator: Rotate Device"
+      },
+      {
+        "command": "flutterWebEmulator.showThanks",
+        "title": "Flutter Web Emulator: Show Thanks Page"
+      },
+      {
+        "command": "flutterWebEmulator.openWebsite",
+        "title": "Flutter Web Emulator: Open Website"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "flutterWebEmulator.start",
+          "when": "resourceExtname == .dart",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "flutterWebEmulator.reload",
+        "key": "ctrl+r",
+        "mac": "cmd+r",
+        "when": "resourceExtname == .dart"
+      }
+    ],
+    "configuration": {
+      "title": "Flutter Web Emulator",
+      "properties": {
+        "flutterWebEmulator.devicePresets": {
+          "type": "object",
+          "default": {
+            "iPhone 14": {
+              "width": 390,
+              "height": 844,
+              "devicePixelRatio": 3
+            },
+            "Pixel 7": {
+              "width": 412,
+              "height": 915,
+              "devicePixelRatio": 2.6
+            },
+            "iPad": {
+              "width": 820,
+              "height": 1180,
+              "devicePixelRatio": 2
+            }
+          },
+          "description": "Predefined device configurations"
+        },
+        "flutterWebEmulator.defaultDevice": {
+          "type": "string",
+          "default": "iPhone 14",
+          "description": "Default device to use"
+        },
+        "flutterWebEmulator.autoReload": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable automatic reload on save"
+        },
+        "flutterWebEmulator.experimentalHotReload": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable experimental hot reload"
+        },
+        "flutterWebEmulator.customFlags": {
+          "type": "array",
+          "default": [],
+          "description": "Additional flags for Flutter development server"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "echo \"No linting configured\"",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.19.9",
+    "@types/vscode": "^1.103.0",
+    "@vscode/test-electron": "^2.5.2",
+    "glob": "^7.2.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.8.3"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "vscode-test": "^1.6.1"
+  }
+}
